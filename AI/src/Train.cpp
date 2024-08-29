@@ -1,4 +1,6 @@
 #include <iostream>
+#include <vector>
+
 #include "NeuralNet.hpp"
 
 class NNTrainer {
@@ -9,7 +11,8 @@ private:
 };
 
 int main() {
-    NueralNetwork nn(false, 3, 9);
+
+    NeuralNetwork nn;
     std::vector<double> board = {
         1, 0, 1,
         1, 0, 2,
@@ -18,7 +21,5 @@ int main() {
 
     int turn = nn.getTurn(board);
     std::cout << turn << "\n";
-    
-    std::vector<std::vector<Neuron>> layers = nn.getLayers();
 
 }

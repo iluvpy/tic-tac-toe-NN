@@ -15,5 +15,5 @@ public:
     }
 private:
     int m_currentTurn = 0;
-    std::array<int, BOARD_SIZE> m_board;
-}
+    int m_board[BOARD_SIZE];
+};

@@ -1,0 +1,15 @@
+cflags = -std=c++20 -g -I./src/headers/
+
+
+rule cc
+    command = clang++ -c $in -o $out $cflags 
+rule lnk
+    command = clang++ $in -o $out
+
+build obj/train.o: cc src/Train.cpp
+build obj/neuralnet.o: cc src/NeuralNet.cpp
+build trainAI: lnk obj/train.o obj/neuralnet.o
+
+
+build obj/tictactoeai.o: cc src/TicTacToeAI.cpp
+build TicTacToeAI: lnk obj/tictactoeai.o
