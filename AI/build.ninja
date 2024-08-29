@@ -11,5 +11,5 @@ build obj/neuralnet.o: cc src/NeuralNet.cpp
 build trainAI.out: lnk obj/train.o obj/neuralnet.o
 
 
-build obj/tictactoeai.: cc src/TicTacToeAI.cpp
+build obj/tictactoeai.o: cc src/TicTacToeAI.cpp
 build TicTacToeAI.out: lnk obj/tictactoeai.o

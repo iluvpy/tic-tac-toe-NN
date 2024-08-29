@@ -55,7 +55,6 @@ NeuralNetwork::NeuralNetwork() {
     constexpr int LAYER_HEIGHT = 9; // because the length of the boardstate is 9 
     constexpr int HIDDEN_LAYERS = 2;
     constexpr int OUTPUT_LAYER = 1; 
-
     generateNeuralNetwork(HIDDEN_LAYERS + OUTPUT_LAYER, LAYER_HEIGHT);
 }
 
@@ -67,7 +66,7 @@ int NeuralNetwork::getTurn(std::vector<double> boardState) {
     std::vector<double> values = boardState;
     DEBUG_VECTOR(values);
     int lowerBoundIndex = 0;
-    int higherBoundIndex = 9;
+    int higherBoundIndex = boardState.size();
     const auto& getInputValues = [](int lowerBoundIndex, int higherBoundIndex, std::vector<double> values) {
         std::vector<double> inputValues;
         for (int i = lowerBoundIndex; i < higherBoundIndex; i++) {
@@ -81,14 +80,14 @@ int NeuralNetwork::getTurn(std::vector<double> boardState) {
             std::vector<double> inputs = getInputValues(lowerBoundIndex, higherBoundIndex, values);
             values.push_back(neuron.calculate(values));
         }
-        lowerBoundIndex += layer.size();
-        higherBoundIndex += layer.size();
+        lowerBoundIndex += boardState.size();
+        higherBoundIndex += boardState.size();
         DEBUG_VECTOR(values);
 
     }
 
 
-    std::vector<double> outputValues = getInputValues(lowerBoundIndex - 9, higherBoundIndex - 9, values);
+    std::vector<double> outputValues = getInputValues(lowerBoundIndex - boardState.size(), higherBoundIndex - boardState.size(), values);
     DEBUG_VECTOR(outputValues);
     return std::distance(outputValues.begin(), std::max_element(outputValues.begin(), outputValues.end()));
 }

@@ -24,7 +24,6 @@ public:
 
 class NeuralNetwork {
 private:
-
     std::vector<std::vector<Neuron>> m_layers;
     bool isCircle; // if the ai is playing circle
 
