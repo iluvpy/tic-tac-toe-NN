@@ -67,12 +67,13 @@ int NeuralNetwork::getTurn(std::vector<double> boardState) {
     std::vector<double> values = boardState;
     DEBUG_VECTOR(values);
     int lowerBoundIndex = 0;
-    int higherBoundIndex = 0;
+    int higherBoundIndex = 9;
     const auto& getInputValues = [](int lowerBoundIndex, int higherBoundIndex, std::vector<double> values) {
         std::vector<double> inputValues;
         for (int i = lowerBoundIndex; i < higherBoundIndex; i++) {
             inputValues.push_back(values[i]);
         }
+        DEBUG_VECTOR(inputValues);
         return inputValues;
     };
     for (const auto& layer : m_layers) {
@@ -86,7 +87,9 @@ int NeuralNetwork::getTurn(std::vector<double> boardState) {
 
     }
 
-    std::vector<double> outputValues = getInputValues(lowerBoundIndex, higherBoundIndex, values);
+
+    std::vector<double> outputValues = getInputValues(lowerBoundIndex - 9, higherBoundIndex - 9, values);
+    DEBUG_VECTOR(outputValues);
     return std::distance(outputValues.begin(), std::max_element(outputValues.begin(), outputValues.end()));
 }
 
