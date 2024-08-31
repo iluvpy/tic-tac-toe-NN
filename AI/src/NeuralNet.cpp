@@ -7,13 +7,6 @@
 
 #define MODEL_HEIGHT 9
 
-// debugging preprocessors
-#define DEBUG_MSG(x) std::cout << x;
-#define DEBUG_VECTOR(x) std::cout << "vector " << #x << ";\n"; \
-for (int i = 0; i < x.size(); i++) {std::cout << "i: " << i << " " << x[i] << "\n";}
-
-
-
 
 Neuron::Neuron() {
     for (int i = 0; i < MODEL_HEIGHT; i++) {
@@ -40,7 +33,6 @@ void Neuron::mutate() {
 
 
 void NeuralNetwork::generateNeuralNetwork(int numberOfLayers, int layerHeight) {
-    DEBUG_MSG("generate Neural Net. was called!\n");
     if (m_layers.size() != 0) return;
     for (int i = 0; i < numberOfLayers; i++) {
         std::vector<Neuron> layer;
@@ -62,9 +54,7 @@ NeuralNetwork::NeuralNetwork() {
 
 
 int NeuralNetwork::getTurn(std::vector<double> boardState) {
-    DEBUG_MSG("called getTurn!\n");
     std::vector<double> values = boardState;
-    DEBUG_VECTOR(values);
     int lowerBoundIndex = 0;
     int higherBoundIndex = boardState.size();
     const auto& getInputValues = [](int lowerBoundIndex, int higherBoundIndex, std::vector<double> values) {
@@ -72,7 +62,6 @@ int NeuralNetwork::getTurn(std::vector<double> boardState) {
         for (int i = lowerBoundIndex; i < higherBoundIndex; i++) {
             inputValues.push_back(values[i]);
         }
-        DEBUG_VECTOR(inputValues);
         return inputValues;
     };
     for (const auto& layer : m_layers) {
@@ -82,13 +71,10 @@ int NeuralNetwork::getTurn(std::vector<double> boardState) {
         }
         lowerBoundIndex += boardState.size();
         higherBoundIndex += boardState.size();
-        DEBUG_VECTOR(values);
-
     }
 
 
     std::vector<double> outputValues = getInputValues(lowerBoundIndex - boardState.size(), higherBoundIndex - boardState.size(), values);
-    DEBUG_VECTOR(outputValues);
     return std::distance(outputValues.begin(), std::max_element(outputValues.begin(), outputValues.end()));
 }
 

@@ -1,25 +1,28 @@
 #include <iostream>
 #include <vector>
+#include <array>
 
 #include "NeuralNet.hpp"
+
+
+#define NEURAL_NETWORKS_SIZE 1000
+
+
 
 class NNTrainer {
 public:
 
+    NNTrainer() {
+
+    }
+
 private:
-    
+    std::array<NeuralNetwork, NEURAL_NETWORKS_SIZE> m_neuralNetworks;
 };
 
 int main() {
-
-    NeuralNetwork nn;
-    std::vector<double> board = {
-        1, 0, 1,
-        1, 0, 2,
-        2, 0, 0
-    };
-
-    int turn = nn.getTurn(board);
-    std::cout << turn << "\n";
-
+ 
+    NNTrainer nnTrainer;
+    
+    return 0;
 }

@@ -1,4 +1,4 @@
-cflags = -std=c++20 -g -I./src/headers/
+cflags = -std=c++20 -g -I./src/headers/ -Werror -Wall 
 
 
 rule cc
