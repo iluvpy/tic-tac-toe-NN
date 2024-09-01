@@ -1,11 +1,10 @@
 #pragma once
 
-#define MODEL_HEIGHT 9
+#include <iostream>
+#include <vector>
+#include <algorithm>
 
-// debugging preprocessors
-#define DEBUG_MSG(x) std::cout << x;
-#define DEBUG_VECTOR(x) std::cout << "vector " << #x << ";\n"; \
-for (int i = 0; i < x.size(); i++) {std::cout << "i: " << i << " " << x[i] << "\n";}
+#define MODEL_HEIGHT 9
 
 class Neuron {
 private:
@@ -18,14 +17,13 @@ public:
 
     double calculate(std::vector<double> inputs) const;
     void mutate();
-
-
 };
 
 class NeuralNetwork {
 private:
     std::vector<std::vector<Neuron>> m_layers;
     //bool isCircle; // if the ai is playing circle
+    int m_fitness;
 
     void generateNeuralNetwork(int numberOfLayers, int layerHeight);
 
@@ -33,5 +31,7 @@ public:
     NeuralNetwork();
 
     int getTurn(std::vector<double> boardState);
+    void addFitness(int val);
+    int getFitness() const;
     void mutate();
 };

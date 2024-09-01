@@ -1,28 +1,28 @@
 #include <iostream>
-#include <vector>
-#include <array>
 
-#include "NeuralNet.hpp"
+#include "TicTacToe.hpp"
+#include "NNTrainer.hpp"
 
+int main() { 
 
-#define NEURAL_NETWORKS_SIZE 1000
-
-
-
-class NNTrainer {
-public:
-
-    NNTrainer() {
-
+    std::array<int, BOARD_SIZE> board = TicTacToe::getRandomValidBoard();
+    int i = 0;
+    for (const auto& v : board) {
+        std::cout << (v == CIRCLE ? 'O' : 'X') << " ";
+        if (i && ((i+1) % 3) == 0) {
+            std::cout << "\n";
+        }
+        i++;
     }
+    // NNTrainer nnTrainer;
 
-private:
-    std::array<NeuralNetwork, NEURAL_NETWORKS_SIZE> m_neuralNetworks;
-};
+    // auto trainerFunction = [](NeuralNetwork neuralNetwork) {
 
-int main() {
- 
-    NNTrainer nnTrainer;
+
+    //     return false;
+    // }
+    // nnTrainer.train(trainerFunction, 100);
+
     
-    return 0;
+    return 0;   
 }

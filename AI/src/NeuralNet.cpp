@@ -1,18 +1,14 @@
-#include <iostream>
-#include <vector>
-#include <algorithm>
-
-#include "Util.hpp"
 #include "NeuralNet.hpp"
+#include "Util.hpp"
 
 #define MODEL_HEIGHT 9
 
 
 Neuron::Neuron() {
     for (int i = 0; i < MODEL_HEIGHT; i++) {
-        m_weights.push_back(util::random<double>(-3.0, 3.0));
+        m_weights.push_back(util::randomF(-3.0, 3.0));
     }
-    m_bias = util::random<double>(-3.0, 3.0);
+    m_bias = util::randomF(-3.0, 3.0);
 }
 
 
@@ -26,9 +22,9 @@ double Neuron::calculate(std::vector<double> inputs) const {
 
 void Neuron::mutate() {
     for (auto& weight : m_weights) {
-        weight += util::random<double>(-0.1, 0.1);
+        weight += util::randomF(-0.1, 0.1);
     }
-    m_bias += util::random<double>(-0.1, 0.1);
+    m_bias += util::randomF(-0.1, 0.1);
 }
 
 
@@ -78,11 +74,19 @@ int NeuralNetwork::getTurn(std::vector<double> boardState) {
     return std::distance(outputValues.begin(), std::max_element(outputValues.begin(), outputValues.end()));
 }
 
-void NeuralNetwork::mutate() {
+void NeuralNetwork::addFitness(int val) {
+    m_fitness += val;
+}
+
+int NeuralNetwork::getFitness() const {
+    return m_fitness;
+}
+
+void NeuralNetwork::mutate()
+{
     for (auto& layer : m_layers) {
         for (auto& neuron : layer) {
             neuron.mutate();
         } 
     }
 }
-

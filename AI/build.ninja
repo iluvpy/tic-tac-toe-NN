@@ -8,8 +8,12 @@ rule lnk
 
 build obj/train.o: cc src/Train.cpp
 build obj/neuralnet.o: cc src/NeuralNet.cpp
-build trainAI.out: lnk obj/train.o obj/neuralnet.o
+build obj/nntrainer.o: cc src/NNTrainer.cpp
+build obj/tictactoe.o: cc src/TicTacToe.cpp
+build obj/util.o: cc src/Util.cpp
 
+build trainAI.out: lnk obj/train.o obj/neuralnet.o obj/nntrainer.o obj/tictactoe.o obj/util.o
 
 build obj/tictactoeai.o: cc src/TicTacToeAI.cpp
+
 build TicTacToeAI.out: lnk obj/tictactoeai.o
