@@ -8,7 +8,9 @@ int main() {
     std::array<int, BOARD_SIZE> board = TicTacToe::getRandomValidBoard();
     int i = 0;
     for (const auto& v : board) {
-        std::cout << (v == CIRCLE ? 'O' : 'X') << " ";
+        char ch = (v == CIRCLE ? 'O' : 'X');
+        if (v == EMPTY) ch = '-';
+        std::cout << ch << " ";
         if (i && ((i+1) % 3) == 0) {
             std::cout << "\n";
         }

@@ -11,7 +11,6 @@ std::array<int, BOARD_SIZE> TicTacToe::getRandomValidBoard() {
     std::array<int, BOARD_SIZE> board;
     for (int i = 0; i < BOARD_SIZE; i++) board[i] = EMPTY;
     const int maxTurns = util::randomI(1, board.size()); 
-    std::cout << "max turns: " << maxTurns << "\n";
     int currentTurn = util::randomI(0, 1) ? CROSS : CIRCLE;
     int i = 0;
     while (i < maxTurns) {
