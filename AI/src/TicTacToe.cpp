@@ -15,7 +15,6 @@ std::array<int, BOARD_SIZE> TicTacToe::getRandomValidBoard() {
     int i = 0;
     while (i < maxTurns) {
         auto indexes = TicTacToe::getEmptyIndexes(board);  
-        if (!indexes.size()) break;
         int randomEmptyIndex = util::randomI(0, indexes.size() - 1);
         board[indexes[randomEmptyIndex]] = currentTurn;
         currentTurn = currentTurn == CROSS ? CIRCLE : CROSS;
