@@ -49,8 +49,10 @@ NeuralNetwork::NeuralNetwork() {
 
 
 
-int NeuralNetwork::getTurn(std::vector<double> boardState) {
-    std::vector<double> values = boardState;
+int NeuralNetwork::getTurn(std::array<int, BOARD_SIZE> boardState) const{
+    std::vector<double> values;
+    for (const auto& v: boardState) values.push_back(v);
+    
     int lowerBoundIndex = 0;
     int higherBoundIndex = boardState.size();
     const auto& getInputValues = [](int lowerBoundIndex, int higherBoundIndex, std::vector<double> values) {

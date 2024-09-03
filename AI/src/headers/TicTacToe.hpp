@@ -28,7 +28,7 @@ public:
     /*
         @brief returns a list of indexes that point to empty squares in board array
     */
-    static std::vector<int> getEmptyIndex(const std::array<int, BOARD_SIZE> &board);
+    static std::vector<int> getEmptyIndexes(const std::array<int, BOARD_SIZE> &board);
 
 
 private:

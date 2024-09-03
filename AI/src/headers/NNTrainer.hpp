@@ -9,7 +9,7 @@
 class NNTrainer {
 public:
     NNTrainer();
-    void train(const std::function<bool(NeuralNetwork)> condition, int repeats);
+    void train(const std::function<bool(const NeuralNetwork&)> condition, int repeats);
     void createChildren();
     int getMaxDeltaFitness();
 private:

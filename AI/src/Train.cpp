@@ -4,26 +4,20 @@
 #include "NNTrainer.hpp"
 
 int main() { 
+    NNTrainer nnTrainer;
 
-    std::array<int, BOARD_SIZE> board = TicTacToe::getRandomValidBoard();
-    int i = 0;
-    for (const auto& v : board) {
-        char ch = (v == CIRCLE ? 'O' : 'X');
-        if (v == EMPTY) ch = '-';
-        std::cout << ch << " ";
-        if (i && ((i+1) % 3) == 0) {
-            std::cout << "\n";
-        }
-        i++;
-    }
-    // NNTrainer nnTrainer;
+    auto trainerFunction = [](const NeuralNetwork &neuralNetwork) {
+        std::array<int, BOARD_SIZE> board; // generate a board with possible moves
+        do { board = TicTacToe::getRandomValidBoard();} 
+        while (TicTacToe::getEmptyIndexes(board).size() <= 0);
 
-    // auto trainerFunction = [](NeuralNetwork neuralNetwork) {
-
-
-    //     return false;
-    // }
-    // nnTrainer.train(trainerFunction, 100);
+        std::vector<int> freeMoves = TicTacToe::getEmptyIndexes(board);
+        int index = neuralNetwork.getTurn(board);
+        bool choseEmptySquare = std::find(freeMoves.begin(), freeMoves.end(), index) != freeMoves.end();
+        
+        return choseEmptySquare;
+    };
+    nnTrainer.train(trainerFunction, 100);
 
     
     return 0;   

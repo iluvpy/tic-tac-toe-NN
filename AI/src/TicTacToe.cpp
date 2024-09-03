@@ -14,8 +14,9 @@ std::array<int, BOARD_SIZE> TicTacToe::getRandomValidBoard() {
     int currentTurn = util::randomI(0, 1) ? CROSS : CIRCLE;
     int i = 0;
     while (i < maxTurns) {
-        auto indexes = TicTacToe::getEmptyIndex(board);  
-        int randomEmptyIndex = util::randomI(0, indexes.size());
+        auto indexes = TicTacToe::getEmptyIndexes(board);  
+        if (!indexes.size()) break;
+        int randomEmptyIndex = util::randomI(0, indexes.size() - 1);
         board[indexes[randomEmptyIndex]] = currentTurn;
         currentTurn = currentTurn == CROSS ? CIRCLE : CROSS;
         i++;
@@ -63,7 +64,7 @@ bool TicTacToe::isWinning(const std::array<int, BOARD_SIZE> &board) {
     return false;
 }
 
-std::vector<int> TicTacToe::getEmptyIndex(const std::array<int, BOARD_SIZE> &board) {
+std::vector<int> TicTacToe::getEmptyIndexes(const std::array<int, BOARD_SIZE> &board) {
     std::vector<int> emptySquares;
     int i = 0;
     for (const auto& square : board) {

@@ -4,6 +4,8 @@
 #include <vector>
 #include <algorithm>
 
+#include "TicTacToe.hpp"
+
 #define MODEL_HEIGHT 9
 
 class Neuron {
@@ -30,7 +32,7 @@ private:
 public:
     NeuralNetwork();
 
-    int getTurn(std::vector<double> boardState);
+    int getTurn(std::array<int, BOARD_SIZE> boardState) const;
     void addFitness(int val);
     int getFitness() const;
     void mutate();
