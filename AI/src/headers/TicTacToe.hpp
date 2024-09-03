@@ -31,6 +31,8 @@ public:
     static std::vector<int> getEmptyIndexes(const std::array<int, BOARD_SIZE> &board);
 
 
+    
+
 private:
     //int m_currentTurn = 0;
     int m_board[BOARD_SIZE];

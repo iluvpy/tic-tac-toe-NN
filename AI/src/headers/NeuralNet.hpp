@@ -17,7 +17,13 @@ private:
 public:
     Neuron();
 
+    /*
+        @returns sigmoid(dot product inputs * wieights + bias)
+    */
     double calculate(std::vector<double> inputs) const;
+    /*
+        @brief mutates weights and bias
+    */
     void mutate();
 };
 

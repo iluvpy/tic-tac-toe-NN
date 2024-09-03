@@ -6,7 +6,7 @@
 int main() { 
     NNTrainer nnTrainer;
 
-    auto trainerFunction = [](const NeuralNetwork &neuralNetwork) {
+    auto validMoves = [](const NeuralNetwork &neuralNetwork) {
         std::array<int, BOARD_SIZE> board; // generate a board with possible moves
         do { board = TicTacToe::getRandomValidBoard();} 
         while (TicTacToe::getEmptyIndexes(board).size() <= 0);
@@ -17,8 +17,10 @@ int main() {
         
         return choseEmptySquare;
     };
-    nnTrainer.train(trainerFunction, 100);
+    nnTrainer.train(validMoves, 100);
 
-    
+
+    std::cout << "max fitness: " << nnTrainer.getMaxDeltaFitness() << "\n";
+
     return 0;   
 }

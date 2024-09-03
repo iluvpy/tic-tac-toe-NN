@@ -39,7 +39,7 @@ void NeuralNetwork::generateNeuralNetwork(int numberOfLayers, int layerHeight) {
     }
 }
 
-NeuralNetwork::NeuralNetwork() {
+NeuralNetwork::NeuralNetwork() : m_fitness(0) {
     constexpr int LAYER_HEIGHT = 9; // because the length of the boardstate is 9 
     constexpr int HIDDEN_LAYERS = 2;
     constexpr int OUTPUT_LAYER = 1; 
